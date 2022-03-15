@@ -2,7 +2,9 @@ package com.example.curso.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "table_product")
@@ -18,9 +20,9 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category categories;
+    @ManyToMany
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 
     public Product() {
     }
@@ -73,11 +75,11 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
-    public Category getCategories() {
+    public Set<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(Category categories) {
+    public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
 
