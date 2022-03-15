@@ -2,10 +2,12 @@ package com.example.curso.config;
 
 import com.example.curso.entities.Category;
 import com.example.curso.entities.Order;
+import com.example.curso.entities.Product;
 import com.example.curso.entities.User;
 import com.example.curso.enums.OrderStatus;
 import com.example.curso.repository.CategoryRepository;
 import com.example.curso.repository.OrderRepository;
+import com.example.curso.repository.ProductRepository;
 import com.example.curso.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -47,5 +52,13 @@ public class TestConfig implements CommandLineRunner {
         Category category3 = new Category(null, "Computers");
 
         categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
+
+        Product product1 = new Product(null, "Product 1", "Description 1", 1.0,"");
+        Product product2 = new Product(null, "Product 2", "Description 2", 2.0,"");
+        Product product3 = new Product(null, "Product 3", "Description 3", 3.0,"");
+        Product product4 = new Product(null, "Product 4", "Description 4", 4.0,"");
+        Product product5 = new Product(null, "Product 5", "Description 5", 5.0,"");
+
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
     }
 }
