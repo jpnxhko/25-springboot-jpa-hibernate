@@ -1,8 +1,10 @@
 package com.example.curso.config;
 
+import com.example.curso.entities.Category;
 import com.example.curso.entities.Order;
 import com.example.curso.entities.User;
 import com.example.curso.enums.OrderStatus;
+import com.example.curso.repository.CategoryRepository;
 import com.example.curso.repository.OrderRepository;
 import com.example.curso.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -36,5 +41,11 @@ public class TestConfig implements CommandLineRunner {
         Order order3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, user1);
 
         orderRepository.saveAll(Arrays.asList(order1, order2, order3));
+
+        Category category1 = new Category(null, "Electronics");
+        Category category2 = new Category(null, "Books");
+        Category category3 = new Category(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
     }
 }
