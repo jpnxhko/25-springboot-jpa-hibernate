@@ -50,11 +50,11 @@ public class TestConfig implements CommandLineRunner {
 
         categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
 
-        Product product1 = new Product(null, "Product 1", "Description 1", 1.0,"");
-        Product product2 = new Product(null, "Product 2", "Description 2", 2.0,"");
-        Product product3 = new Product(null, "Product 3", "Description 3", 3.0,"");
-        Product product4 = new Product(null, "Product 4", "Description 4", 4.0,"");
-        Product product5 = new Product(null, "Product 5", "Description 5", 5.0,"");
+        Product product1 = new Product(null, "Product 1", "Description 1", 1.0, "");
+        Product product2 = new Product(null, "Product 2", "Description 2", 2.0, "");
+        Product product3 = new Product(null, "Product 3", "Description 3", 3.0, "");
+        Product product4 = new Product(null, "Product 4", "Description 4", 4.0, "");
+        Product product5 = new Product(null, "Product 5", "Description 5", 5.0, "");
 
         productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
 
@@ -73,5 +73,12 @@ public class TestConfig implements CommandLineRunner {
         OrderItem orderItem4 = new OrderItem(order1, product5, 2, product5.getPrice());
 
         orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
+
+        Payment payment1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), order1);
+
+        order1.setPayment(payment1);
+
+        orderRepository.save(order1);
+
     }
 }
